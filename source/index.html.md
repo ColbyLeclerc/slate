@@ -2,10 +2,7 @@
 title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-  - ruby
-  - python
-  - javascript
+  - json
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
@@ -29,211 +26,198 @@ This example API documentation page was created with [Slate](https://github.com/
 
 > To authorize, use this code:
 
-```ruby
-require 'kittn'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
+> Make sure to replace `YOUR_API_KEY` with your API key.
 
 Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
 
 Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
 
-`Authorization: meowmeowmeow`
+`Authorization: YOUR_API_KEY`
 
 <aside class="notice">
 You must replace <code>meowmeowmeow</code> with your personal API key.
 </aside>
 
-# Kittens
+# Sensors
 
-## Get All Kittens
+## Get All Sensors
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
+> Example response
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "enclosureSensorIds": [
+    2,
+    3,
+    8
+  ],
+  "plantSensorIds": [
+    18,
+    21,
+    7
+  ]
 }
 ```
 
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+This endpoint returns all sensor types and their respected ids. To perform other CRUD operations, see <code>/sensors/enclosure</code> listed under Enclosure Sensors and <code>/sensors/plant</code> listed under Plant Sensors.
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`GET http://api.stepbystepml.io/agm/v1/sensors`
+
+# Enclosures
+
+## Get All Enclosures
+
+> Example response
+
+```json
+{
+    "enclosures": 
+        {
+            "enclosureId": 12,
+            "title": "Basement Enclosure 1",
+            "length": 12.5,
+            "width": 10.5,
+            "height": 14,
+            "location": "basement",
+            "dateCreated": "2018-11-20 09:00:53"
+        },
+        {
+            "enclosureId": 13,
+            "title": "Basement Enclosure 2",
+            "length": 12.5,
+            "width": 10.5,
+            "height": 14,
+            "location": "basement",
+            "dateCreated": "2018-12-20 09:00:53"
+        }
+}
+```
+
+Lists all enclosures associated with your account.
+
+### HTTP Request
+
+`GET http://api.stepbystepml.io/agm/v1/sensors`
+
+## Get a Specific Enclosure
+
+> Example response
+
+```json
+{
+    "enclosureId": 12,
+    "title": "Basement Enclosure 1",
+    "length": 12.5,
+    "width": 10.5,
+    "height": 14,
+    "location": "basement",
+    "dateCreated": "2018-11-20 09:00:53"
+}
+```
+
+This endpoint retrieves a specific enclosure.
+
+### HTTP Request
+
+`GET http://api.stepbystepml.io/agm/v1/enclosures/<ID>`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the kitten to retrieve
+ID | The ID of the enclosure to retrieve
 
-## Delete a Specific Kitten
+## Create Enclosures
 
-```ruby
-require 'kittn'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
+> Example request
 
 ```json
 {
-  "id": 2,
-  "deleted" : ":("
+    "enclosures": 
+        {
+            "title": "Basement Enclosure 1",
+            "length": 12.5,
+            "width": 10.5,
+            "height": 14,
+            "location": "basement"
+        },
+        {
+            "title": "Basement Enclosure 2",
+            "length": 12.5,
+            "width": 10.5,
+            "height": 14,
+            "location": "basement"
+        }
 }
 ```
 
-This endpoint deletes a specific kitten.
+>Example response
+
+```json
+{
+    "enclosures": 
+        {
+            "enclosureId": 12,
+            "title": "Basement Enclosure 1",
+            "length": 12.5,
+            "width": 10.5,
+            "height": 14,
+            "location": "basement",
+            "dateCreated": "2018-11-20 09:00:53"
+        },
+        {
+            "enclosureId": 13,
+            "title": "Basement Enclosure 2",
+            "length": 12.5,
+            "width": 10.5,
+            "height": 14,
+            "location": "basement",
+            "dateCreated": "2018-12-20 09:00:53"
+        }
+}
+```
+
+Creates enclosure entities.
+
+<aside class="notice"><code>enclosureId</code> and <code>dateCreated</code> are generated after entity creation, and can be found in the response body.</aside>
 
 ### HTTP Request
 
-`DELETE http://example.com/kittens/<ID>`
+`POST http://api.stepbystepml.io/agm/v1/enclosures`
+
+## Delete Enclosures
+
+> Example request
+
+```bash
+$ curl http://api.stepbystepml.io/agm/v1/enclosures/12 \
+   -u YOUR_API_KEY \
+   -X DELETE
+```
+
+> Example response
+
+```json
+{
+  "enclosureId": 12,
+  "deleted": true
+}
+```
+This endpoint deletes a specific enclosure.
+
+<aside class="warning">Deleting enclosures is a permanent action and cannot be undone.</aside>
+
+
+### HTTP Request
+
+`DELETE http://api.stepbystepml.io/agm/v1/enclosures/<ID>`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the kitten to delete
-
+ID | The ID of the enclosure to delete
