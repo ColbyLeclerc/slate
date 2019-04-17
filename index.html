@@ -284,7 +284,7 @@
               </ul>
           </li>
           <li>
-            <a href="#readings" class="toc-h1 toc-link" data-title="Readings">Readings</a>
+            <a href="#readings-temperature-humidity" class="toc-h1 toc-link" data-title="Readings - Temperature Humidity">Readings - Temperature Humidity</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#get-all-temperature-humidity-readings" class="toc-h2 toc-link" data-title="Get All temperature-humidity Readings">Get All <code>temperature-humidity</code> Readings</a>
@@ -298,6 +298,11 @@
                   <li>
                     <a href="#delete-single-temperature-humidity-reading" class="toc-h2 toc-link" data-title="Delete Single temperature-humidity Reading">Delete Single <code>temperature-humidity</code> Reading</a>
                   </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#readings-soil-moisture" class="toc-h1 toc-link" data-title="Readings - Soil Moisture">Readings - Soil Moisture</a>
+              <ul class="toc-list-h2">
                   <li>
                     <a href="#get-all-soil-moisture-readings" class="toc-h2 toc-link" data-title="Get All soil-moisture Readings">Get All <code>soil-moisture</code> Readings</a>
                   </li>
@@ -310,6 +315,11 @@
                   <li>
                     <a href="#delete-single-soil-moisture-reading" class="toc-h2 toc-link" data-title="Delete Single soil-moisture Reading">Delete Single <code>soil-moisture</code> Reading</a>
                   </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#readings-soil-temperature" class="toc-h1 toc-link" data-title="Readings - Soil Temperature">Readings - Soil Temperature</a>
+              <ul class="toc-list-h2">
                   <li>
                     <a href="#get-all-soil-temperature-readings" class="toc-h2 toc-link" data-title="Get All soil-temperature Readings">Get All <code>soil-temperature</code> Readings</a>
                   </li>
@@ -680,7 +690,7 @@ You must replace <code>YOUR_API_KEY</code> with your personal API key.
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
-<p>This endpoint returns all sensors assocaited with the account. Note there exists a difference between enclosure sensors, and plant sensors, as defined by the <code>is-plant</code> and <code>is-enclosure</code> fields.</p>
+<p>This endpoint returns all sensors associated with the account. Note there exists a difference between enclosure sensors, and plant sensors, as defined by the <code>is-plant</code> and <code>is-enclosure</code> fields.</p>
 <h3 id='http-request-10'>HTTP Request</h3>
 <p><code>GET https://agm-api.com/agm/v1/sensors</code></p>
 <h2 id='get-single-sensor'>Get Single Sensor</h2>
@@ -745,7 +755,7 @@ You must replace <code>YOUR_API_KEY</code> with your personal API key.
 <p>Deletes a sensor entity</p>
 <h3 id='http-request-13'>HTTP Request</h3>
 <p><code>DELETE https://agm-api.com/agm/v1/sensors/1</code></p>
-<h1 id='readings'>Readings</h1><h2 id='get-all-temperature-humidity-readings'>Get All <code>temperature-humidity</code> Readings</h2>
+<h1 id='readings-temperature-humidity'>Readings - Temperature Humidity</h1><h2 id='get-all-temperature-humidity-readings'>Get All <code>temperature-humidity</code> Readings</h2>
 <blockquote>
 <p>Example response</p>
 </blockquote>
@@ -840,7 +850,7 @@ You must replace <code>YOUR_API_KEY</code> with your personal API key.
 <p>Deletes a temperature-humidity reading entity</p>
 <h3 id='http-request-17'>HTTP Request</h3>
 <p><code>DELETE https://agm-api.com/agm/v1/readings/temperature-humidity/1</code></p>
-<h2 id='get-all-soil-moisture-readings'>Get All <code>soil-moisture</code> Readings</h2>
+<h1 id='readings-soil-moisture'>Readings - Soil Moisture</h1><h2 id='get-all-soil-moisture-readings'>Get All <code>soil-moisture</code> Readings</h2>
 <blockquote>
 <p>Example response</p>
 </blockquote>
@@ -925,7 +935,7 @@ You must replace <code>YOUR_API_KEY</code> with your personal API key.
 <p>Deletes a <code>soil-moisture</code> reading entity</p>
 <h3 id='http-request-21'>HTTP Request</h3>
 <p><code>DELETE https://agm-api.com/agm/v1/readings/soil-moisture/1</code></p>
-<h2 id='get-all-soil-temperature-readings'>Get All <code>soil-temperature</code> Readings</h2>
+<h1 id='readings-soil-temperature'>Readings - Soil Temperature</h1><h2 id='get-all-soil-temperature-readings'>Get All <code>soil-temperature</code> Readings</h2>
 <blockquote>
 <p>Example response</p>
 </blockquote>
